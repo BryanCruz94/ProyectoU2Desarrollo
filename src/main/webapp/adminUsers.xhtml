@@ -8,7 +8,7 @@
 <f:view>
     <h:head>
         <h:outputStylesheet library="webjars" name="bootstrap/5.1.3/css/bootstrap.min.css"/>
-        <title>ESPE-SD BITÁCORA</title>
+        <title>ESPE-SD ADMINISTRADOR USUARIOS</title>
     </h:head>
     <h:body>
         <div class="container-fluid position-relative nav-bar p-0 bg-success mb-4">
@@ -32,13 +32,13 @@
         <div class="container">
             <div class="row justify-content-center align-items-center">
                 <div class="col text-center">
-                    <h1>BITÁCORA NOVEDADES UFA-ESPE "SANTO DOMINGO"</h1>
+                    <h1>ADMINISTRACIÓN DE USUARIO</h1>
                 </div>
             </div>
             <div class="row mt-1">
                 <div class="col-10 offset-1 d-flex align-items-center justify-content-center">
                     <h:form>
-                        <h:commandButton value="REGISTRAR NOVEDAD" action="agregarnovedad.xhtml" class="btn btn-lg btn-success" />
+                        <h:commandButton value="REGISTRAR NUEVO USUARIO" action="agregaradminuser.xhtml" styleClass="btn btn-lg btn-success" />
                     </h:form>
                 </div>
             </div>
@@ -49,6 +49,9 @@
                 <div class="col">
                     <div class="card">
                         <div class="card-header">
+                            <div>
+                                <h3>USUARIOS ACTUALES</h3>
+                            </div>
                             <div class="card-tools">
                             </div>
                         </div>
@@ -57,22 +60,46 @@
                                 <thead>
                                 <tr>
                                     <th class="text-center align-middle">ORD</th>
-                                    <th class="text-center align-middle" colspan="2">NOVEDADES</th>
-                                    <th class="text-center align-middle">FECHA/HORA</th>
-                                    <th class="text-center align-middle text-wrap">GUARDIA TURNO</th>
+                                    <th class="text-center align-middle">NOMBRE Y APELLIDO</th>
+                                    <th class="text-cente align-middler">CORREO ELECTRÓNICO</th>
+                                    <th class="text-center align-middle">CÉDULA DE IDENTIDAD</th>
+                                    <th class="text-center align-middle">CEULAR</th>
+                                    <th class="text-center align-middle">TIPO SANGRE</th>
+                                    <th class="text-center align-middle">ROL</th>
+                                    <th class="text-center align-middle">EDITAR</th>
+                                    <th class="text-center align-middle">ELIMINAR</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <tr>
-                                    <td class="align-middle"></td>
-                                    <td class="text-wrap" style="min-width: 100px; max-width: 300px;"></td>
-                                    <td class="align-middle" style="min-width: 10px; max-width: 30px;">
-                                        <div class="btnCopiar">
-                                            <i class="fa-solid fa-copy fa-lg"  style="color: #3b9834;"></i>
-                                        </div>
+                                    <td class="text-center">
                                     </td>
-                                    <td class="align-middle text-wrap"></td>
-                                    <td class="align-middle text-wrap" style="min-width: 50px; max-width: 300px;"></td>
+                                    <td class="text-center">
+                                    </td>
+                                    <td class="text-center">
+                                    </td>
+                                    <td class="text-center">
+                                    </td>
+                                    <td class="text-center">
+                                    </td>
+                                    <td class="text-center">
+                                    </td>
+                                    <td class="text-center">
+                                    </td>
+                                    <td class="text-center">
+                                        <h:form>
+                                            <h:commandButton value="EDITAR" action="editadminuser.xhtml" type="submit" class="btn btn-secondary btn-sm">
+                                                <span class="fas fa-user-edit"></span>
+                                            </h:commandButton>
+                                        </h:form>
+                                    </td>
+                                    <td class="text-center">
+                                        <h:form>
+                                            <h:commandButton value="ELIMINAR" action="deleteadminuser.xhtml" type="submit" class="btn btn-danger btn-sm">
+                                                <span class="fas fa-user-times"></span>
+                                            </h:commandButton>
+                                        </h:form>
+                                    </td>
                                 </tr>
                                 </tbody>
                             </table>
