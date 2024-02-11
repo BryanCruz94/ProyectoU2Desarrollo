@@ -54,6 +54,72 @@
                             </div>
                         </div>
                         <div class="card-body table-responsive pl-2 pr-2">
+                            <h:dataTable value="#{usuarioBean.obtenerUsuarios()}" var="user" class="table table-hover text-nowrap">
+                                <h:column>
+                                    <f:facet name="header">
+                                        ORD
+                                    </f:facet>
+                                    <h:outputText value="#{user.id}" />
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        NOMBRE Y APELLIDO
+                                    </f:facet>
+                                    <h:outputText value="#{user.names}" />
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        CORREO ELECTRÓNICO
+                                    </f:facet>
+                                    <h:outputText value="#{user.email}" />
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        CÉDULA DE IDENTIDAD
+                                    </f:facet>
+                                    <h:outputText value="#{user.identification_card}" />
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        CELULAR
+                                    </f:facet>
+                                    <h:outputText value="#{user.phone}" />
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        TIPO SANGRE
+                                    </f:facet>
+                                    <h:outputText value="#{user.blood_type}" />
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        ROL
+                                    </f:facet>
+                                    <h:outputText value="#{user.is_admin}" />
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        EDITAR
+                                    </f:facet>
+                                    <h:form>
+                                        <h:commandButton value="EDITAR" action="editadminuser.xhtml" type="submit" class="btn btn-secondary btn-sm">
+                                            <span class="fas fa-user-edit"></span>
+                                        </h:commandButton>
+                                    </h:form>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        ELIMINAR
+                                    </f:facet>
+                                    <h:form>
+                                        <h:commandButton value="ELIMINAR" action="deleteadminuser.xhtml" type="submit" class="btn btn-danger btn-sm">
+                                            <span class="fas fa-user-times"></span>
+                                        </h:commandButton>
+                                    </h:form>
+                                </h:column>
+
+                            </h:dataTable>
+
                             <table id="binnacleTable"  class="table table-hover text-nowrap">
                                 <thead>
                                 <tr>
