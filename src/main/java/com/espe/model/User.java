@@ -18,12 +18,10 @@ public class User {
 
     @Column
     private String email;
-    @Column
-    private String email_verified_at;
+
     @Column
     private String password;
-    @Column
-    private String remember_token;
+
     @Column
     private String identification_card;
     @Column
@@ -36,14 +34,12 @@ public class User {
     public User() {
     }
 
-    public User(int id, String names, String last_names, String email, String email_verified_at, String password, String remember_token, String identification_card, String phone, boolean is_admin, String blood_type) {
+    public User(int id, String names, String last_names, String email, String password, String identification_card, String phone, boolean is_admin, String blood_type) {
         this.id = id;
         this.names = names;
         this.last_names = last_names;
         this.email = email;
-        this.email_verified_at = email_verified_at;
         this.password = password;
-        this.remember_token = remember_token;
         this.identification_card = identification_card;
         this.phone = phone;
         this.is_admin = is_admin;
@@ -82,28 +78,12 @@ public class User {
         this.email = email;
     }
 
-    public String getEmail_verified_at() {
-        return email_verified_at;
-    }
-
-    public void setEmail_verified_at(String email_verified_at) {
-        this.email_verified_at = email_verified_at;
-    }
-
     public String getPassword() {
         return password;
     }
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getRemember_token() {
-        return remember_token;
-    }
-
-    public void setRemember_token(String remember_token) {
-        this.remember_token = remember_token;
     }
 
     public String getIdentification_card() {
@@ -145,9 +125,7 @@ public class User {
                 ", names='" + names + '\'' +
                 ", last_names='" + last_names + '\'' +
                 ", email='" + email + '\'' +
-                ", email_verified_at='" + email_verified_at + '\'' +
                 ", password='" + password + '\'' +
-                ", remember_token='" + remember_token + '\'' +
                 ", identification_card='" + identification_card + '\'' +
                 ", phone='" + phone + '\'' +
                 ", is_admin=" + is_admin +

@@ -37,7 +37,7 @@
             <div class="row mt-1">
                 <div class="col-10 offset-1 d-flex align-items-center justify-content-center">
                     <h:form>
-                        <h:commandButton value="REGISTRAR NUEVO USUARIO" action="agregaradminuser.xhtml" styleClass="btn btn-lg btn-success" />
+                        <h:commandButton value="REGISTRAR NUEVO USUARIO" action="#{usuarioBean.nuevo()}" styleClass="btn btn-lg btn-success" />
                     </h:form>
                 </div>
             </div>
@@ -55,17 +55,12 @@
                         </div>
                         <div class="card-body table-responsive pl-2 pr-2">
                             <h:dataTable value="#{usuarioBean.obtenerUsuarios()}" var="user" class="table table-hover text-nowrap">
-                                <h:column>
-                                    <f:facet name="header">
-                                        ORD
-                                    </f:facet>
-                                    <h:outputText value="#{user.id}" />
-                                </h:column>
-                                <h:column>
+
+                                <h:column >
                                     <f:facet name="header">
                                         NOMBRE Y APELLIDO
                                     </f:facet>
-                                    <h:outputText value="#{user.names}" />
+                                    <h:outputText value="#{user.names} #{user.last_names}" />
                                 </h:column>
                                 <h:column>
                                     <f:facet name="header">
@@ -73,7 +68,7 @@
                                     </f:facet>
                                     <h:outputText value="#{user.email}" />
                                 </h:column>
-                                <h:column>
+                                <h:column class="text-center align-middle">
                                     <f:facet name="header">
                                         CÉDULA DE IDENTIDAD
                                     </f:facet>
@@ -85,24 +80,20 @@
                                     </f:facet>
                                     <h:outputText value="#{user.phone}" />
                                 </h:column>
-                                <h:column>
+                                <h:column class="text-center align-middle">
                                     <f:facet name="header">
                                         TIPO SANGRE
                                     </f:facet>
                                     <h:outputText value="#{user.blood_type}" />
                                 </h:column>
-                                <h:column>
-                                    <f:facet name="header">
-                                        ROL
-                                    </f:facet>
-                                    <h:outputText value="#{user.is_admin}" />
-                                </h:column>
+
+
                                 <h:column>
                                     <f:facet name="header">
                                         EDITAR
                                     </f:facet>
                                     <h:form>
-                                        <h:commandButton value="EDITAR" action="editadminuser.xhtml" type="submit" class="btn btn-secondary btn-sm">
+                                        <h:commandButton value="EDITAR" action="#{usuarioBean.editar(user.id)}" type="submit" class="btn btn-secondary btn-sm">
                                             <span class="fas fa-user-edit"></span>
                                         </h:commandButton>
                                     </h:form>
@@ -112,61 +103,13 @@
                                         ELIMINAR
                                     </f:facet>
                                     <h:form>
-                                        <h:commandButton value="ELIMINAR" action="deleteadminuser.xhtml" type="submit" class="btn btn-danger btn-sm">
+                                        <h:commandButton value="ELIMINAR" action="#{usuarioBean.eliminar(user.id)}" type="submit" class="btn btn-danger btn-sm">
                                             <span class="fas fa-user-times"></span>
                                         </h:commandButton>
                                     </h:form>
                                 </h:column>
 
                             </h:dataTable>
-
-                            <table id="binnacleTable"  class="table table-hover text-nowrap">
-                                <thead>
-                                <tr>
-                                    <th class="text-center align-middle">ORD</th>
-                                    <th class="text-center align-middle">NOMBRE Y APELLIDO</th>
-                                    <th class="text-cente align-middler">CORREO ELECTRÓNICO</th>
-                                    <th class="text-center align-middle">CÉDULA DE IDENTIDAD</th>
-                                    <th class="text-center align-middle">CEULAR</th>
-                                    <th class="text-center align-middle">TIPO SANGRE</th>
-                                    <th class="text-center align-middle">ROL</th>
-                                    <th class="text-center align-middle">EDITAR</th>
-                                    <th class="text-center align-middle">ELIMINAR</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <td class="text-center">
-                                    </td>
-                                    <td class="text-center">
-                                    </td>
-                                    <td class="text-center">
-                                    </td>
-                                    <td class="text-center">
-                                    </td>
-                                    <td class="text-center">
-                                    </td>
-                                    <td class="text-center">
-                                    </td>
-                                    <td class="text-center">
-                                    </td>
-                                    <td class="text-center">
-                                        <h:form>
-                                            <h:commandButton value="EDITAR" action="editadminuser.xhtml" type="submit" class="btn btn-secondary btn-sm">
-                                                <span class="fas fa-user-edit"></span>
-                                            </h:commandButton>
-                                        </h:form>
-                                    </td>
-                                    <td class="text-center">
-                                        <h:form>
-                                            <h:commandButton value="ELIMINAR" action="deleteadminuser.xhtml" type="submit" class="btn btn-danger btn-sm">
-                                                <span class="fas fa-user-times"></span>
-                                            </h:commandButton>
-                                        </h:form>
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
                         </div>
                     </div>
                 </div>

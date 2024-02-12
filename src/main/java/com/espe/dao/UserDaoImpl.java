@@ -11,20 +11,27 @@ import java.util.List;
 public class UserDaoImpl implements  IUserDao{
     EntityManager entityManager = JPAUtil.getEntityManagerFactory().createEntityManager();
 
+
+
     @Override
     public void guardar(User user) {
-        // TODO Auto-generated method stub
+        entityManager.getTransaction().begin();
+        entityManager.persist(user);
+        entityManager.getTransaction().commit();
     }
 
     @Override
     public void editar(User user) {
-        // TODO Auto-generated method stub
+        entityManager.getTransaction().begin();
+        entityManager.merge(user);
+        entityManager.getTransaction().commit();
     }
 
     @Override
     public User buscarUsuario(int id) {
-        // TODO Auto-generated method stub
-        return null;
+        User oUsuario = new User();
+        oUsuario = entityManager.find(User.class, id);
+        return oUsuario;
     }
 
     @Override
@@ -37,6 +44,10 @@ public class UserDaoImpl implements  IUserDao{
 
     @Override
     public void eliminar(int id) {
-        // TODO Auto-generated method stub
+        User oUsuario = new User();
+        oUsuario = entityManager.find(User.class, id);
+        entityManager.getTransaction().begin();
+        entityManager.remove(oUsuario);
+        entityManager.getTransaction().commit();
     }
 }

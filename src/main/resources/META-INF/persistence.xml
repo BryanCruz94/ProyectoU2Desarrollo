@@ -8,7 +8,7 @@
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <properties>
             <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"></property>
-            <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://127.0.0.1:3306/bitacora_espe?useSSL=false"></property>
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://127.0.0.1:3306/bitacora_espe_u2?useSSL=false"></property>
             <property name="jakarta.persistence.jdbc.user" value="root"></property>
             <property name="jakarta.persistence.jdbc.password" value=""></property>
 
