@@ -2,12 +2,14 @@ package com.espe.model;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 
 @Entity
-@Table(name="User")
+@Table(name="Users")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     @Column
@@ -30,6 +32,7 @@ public class User {
     private boolean is_admin;
     @Column
     private String blood_type;
+
 
     public User() {
     }

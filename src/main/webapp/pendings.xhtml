@@ -38,7 +38,7 @@
             <div class="row mt-1">
                 <div class="col-10 offset-1 d-flex align-items-center justify-content-center">
                     <h:form>
-                        <h:commandButton value="NUEVA CONSIGNA" action="agregarpendings.xhtml" class="btn btn-lg btn-success" />
+                        <h:commandButton value="NUEVA CONSIGNA" action="#{pendingBean.nuevaConsigna()}" class="btn btn-lg btn-success" />
                     </h:form>
                 </div>
             </div>
@@ -53,30 +53,34 @@
                             </div>
                         </div>
                         <div class="card-body table-responsive pl-2 pr-2">
-                            <table id="pendingsTable" class="table table-hover text-nowrap">
-                                <thead>
-                                <tr>
-                                    <th class="text-center">ORD</th>
-                                    <th class="text-center">HORA</th>
-                                    <th class="text-center">DESCRIPCIÓN</th>
-                                    <th class="text-center">REMITENTE</th>
-                                    <th class="text-center">REALIZADA</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <td class="text-center"></td>
-                                    <td class="text-center"></td>
-                                    <td style="max-width: 800px; min-width: 200px;"></td>
-                                    <td class="text-center"></td>
-                                    <td class="text-center">
-                                        <form method="POST">
-                                            <input type="submit" class="btn btn-danger" value="REALIZADA"></input>
-                                        </form>
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
+                           <h:dataTable id="pendingsTable" value="#{pendingBean.obtenerConsignasPendientes()}" var="pendiente" class="table table-hover text-nowrap">
+                                <h:column>
+                                    <f:facet name="header">
+                                        HORA
+                                    </f:facet>
+                                    <h:outputText value="#{pendiente.hour_create}" />
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        DESCRIPCIÓN
+                                    </f:facet>
+                                    <h:outputText value="#{pendiente.pending_task}" style="max-width: 800px; min-width: 200px;" />
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        REMITENTE
+                                    </f:facet>
+                                    <h:outputText value="#{pendiente.guardCreate}" />
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        REALIZADA
+                                    </f:facet>
+                                    <h:form>
+                                        <h:commandButton value="REALIZADA" action="#{pendingBean.buscarConsigna(pendiente.id)}" class="btn btn-danger" type="submit" />
+                                    </h:form>
+                                </h:column>
+                            </h:dataTable>
                         </div>
                     </div>
                 </div>
@@ -93,30 +97,46 @@
                     </div>
                 </div>
                 <div class="card-body table-responsive pl-2 pr-2">
-                    <table id="donePendingsTable" class="table table-hover text-nowrap">
-                        <thead>
-                        <tr>
-                            <th class="align-middle text-wrap">ORD</th>
-                            <th class="align-middle text-wrap" style="min-width: 100px; max-width:300px">DESCRIPCIÓN</th>
-                            <th class="align-middle text-wrap" style="min-width: 100px; max-width:300px">HORA ASIGNACIÓN</th>
-                            <th class="align-middle text-wrap" style="min-width: 100px; max-width:300px">HORA REALIZADO</th>
-                            <th class="align-middle text-wrap" style="min-width: 100px; max-width:300px">REMITENTE</th>
-                            <th class="align-middle text-wrap" style="min-width: 100px; max-width:300px">REALIZADO POR</th>
-                            <th class="align-middle text-wrap" style="min-width: 100px; max-width:300px">NOVEDADES</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td class="align-middle text-wrap"></td>
-                            <td></td>
-                            <td class="align-middle text-wrap" style="min-width: 100px; max-width:300px"></td>
-                            <td class="align-middle text-wrap" style="min-width: 100px; max-width:300px"></td>
-                            <td class="align-middle text-wrap" style="min-width: 100px; max-width:300px"></td>
-                            <td class="align-middle text-wrap" style="min-width: 100px; max-width:300px"></td>
-                            <td class="align-middle text-wrap" style="min-width: 100px; max-width:300px"></td>
-                        </tr>
-                        </tbody>
-                    </table>
+
+                    <h:dataTable id="pendingsDoneTable" value="#{pendingBean.obtenerConsignas() }" var="consigna" class="table table-hover text-nowrap">
+                        <h:column>
+                            <f:facet name="header">
+                                DESCRIPCIÓN
+                            </f:facet>
+                            <h:outputText value="#{consigna.pending_task}" />
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                HORA ASIGNACIÓN
+                            </f:facet>
+                            <h:outputText value="#{consigna.hour_create}" style="max-width: 800px; min-width: 200px;" />
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                HORA REALIZADO
+                            </f:facet>
+                            <h:outputText value="#{consigna.hour_done}" />
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                REMITENTE
+                            </f:facet>
+                            <h:outputText value="#{consigna.guardCreate}" />
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                REALIZADO POR
+                            </f:facet>
+                            <h:outputText value="#{consigna.guardDone}" />
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                NOVEDADES
+                            </f:facet>
+                            <h:outputText value="#{consigna.observations}" />
+                        </h:column>
+
+                    </h:dataTable>
                 </div>
             </div>
         </div>
