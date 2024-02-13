@@ -1,6 +1,7 @@
 package com.espe.controller;
 
 import jakarta.enterprise.context.RequestScoped;
+import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.inject.Named;
 import com.espe.dao.UserDaoImpl;
@@ -16,13 +17,6 @@ public class UserManagerBean {
     private String email;
     private String password;
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
     public String getEmail() {
         return email;
     }
@@ -31,7 +25,17 @@ public class UserManagerBean {
         this.email = email;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     IUserDao usuarioDao = new UserDaoImpl();
+
+    private final UserDaoImpl usuarioDaoImpl = new UserDaoImpl();
 
     //PARA LISTAR TODOS LOS USUARIOS
     public List<User> obtenerUsuarios(){
@@ -96,18 +100,25 @@ public class UserManagerBean {
 
         //Se pasan los parámetros del usuario
         sessionMap.put("usuarioLog", oUsuario);
-
     }
 
-    public void seleccionarUsuario2(User user){
-        Map<String, Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
-        sessionMap.put("usuarioLog", user);
-
+    public String mostrarLogin(){
+        return "/login.xhtml";
     }
 
+    public String login() {
+        // Verifica el nombre de usuario y la contraseña en la base de datos
+        User usuarioEnBaseDeDatos = usuarioDaoImpl.buscarPorEmail(this.email);
 
-
-
-
+        if (usuarioEnBaseDeDatos != null && this.password.equals(usuarioEnBaseDeDatos.getPassword())) {
+            //abrir una sesion
+            Map<String, Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
+            sessionMap.put("usuarioLog", usuarioEnBaseDeDatos);
+            return "index2.xhtml?faces-redirect=true";
+        } else {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Nombre de usuario o contraseña incorrectos."));
+            return "login.xhtml";
+        }
+    }
 
 }

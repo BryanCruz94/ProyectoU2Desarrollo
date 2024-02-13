@@ -20,7 +20,7 @@
                     </button>
                     <div class="collapse navbar-collapse justify-content-center px-3" id="navbarCollapse">
                         <div class="navbar-nav py-lg-2">
-                            <a href="index.xhtml" class="nav-item nav-link">NOVEDADES</a>
+                            <a href="index2.xhtml" class="nav-item nav-link">NOVEDADES</a>
                             <a href="pendings.xhtml" class="nav-item nav-link">CONSIGNAS</a>
                             <a href="admin.xhtml" class="nav-item nav-link">ADMINISTRADOR</a>
                         </div>
@@ -45,38 +45,7 @@
                         </div>
                         <div class="card-body">
                             <h3 class="card-title">NUEVA CONSIGNA</h3>
-                            <h5 class="card-title">SELECCIONE USUARIO RESPONSABLE</h5>
-                            <div class="card-body table-responsive pl-2 pr-2">
-                                <h:dataTable value="#{usuarioBean.obtenerUsuarios()}" var="user" class="table table-hover text-nowrap">
 
-                                    <h:column >
-                                        <f:facet name="header">
-                                            NOMBRE Y APELLIDO
-                                        </f:facet>
-                                        <h:outputText value="#{user.names} #{user.last_names}" />
-                                    </h:column>
-                                    <h:column>
-                                        <f:facet name="header">
-                                            CORREO ELECTRÓNICO
-                                        </f:facet>
-                                        <h:outputText value="#{user.email}" />
-                                    </h:column>
-
-                                    <h:column>
-                                        <f:facet name="header">
-                                            ACCIÓN
-                                        </f:facet>
-                                        <h:form>
-                                            <h:commandButton value="SELECCIONAR" action="#{usuarioBean.seleccionarUsuario(user.id)}" type="submit" class="btn btn-secondary btn-sm">
-                                                <span class="fas fa-user-edit"></span>
-                                            </h:commandButton>
-                                        </h:form>
-                                    </h:column>
-                                </h:dataTable>
-                                <div>
-                                    Usuario seleccionado: #{usuarioLog.names} #{usuarioLog.last_names}
-                                </div>
-                            </div>
                             <h:form>
                                 <div class="row mt-3">
                                     <div class="col-12">

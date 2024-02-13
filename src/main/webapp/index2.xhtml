@@ -24,17 +24,30 @@
                             <a href="pendings.xhtml" class="nav-item nav-link">CONSIGNAS</a>
                             <a href="admin.xhtml" class="nav-item nav-link">ADMINISTRADOR</a>
                         </div>
+
+                    </div>
+                    <div class="navbar-nav py-lg-2">
+                        #{usuarioLog.names} #{usuarioLog.last_names}
                     </div>
                 </nav>
             </div>
         </div>
+
         <div class="container">
             <div class="row justify-content-center align-items-center">
                 <div class="col text-center">
                     <h1>BITÁCORA NOVEDADES UFA-ESPE "SANTO DOMINGO"</h1>
                 </div>
             </div>
+            <div class="row mt-1">
+                <div class="col-10 offset-1 d-flex align-items-center justify-content-center">
+                    <h:form enctype="multipart/form-data">
+                        <h:commandButton value="REGISTRAR NOVEDAD" action="#{noveltyBean.nuevaNovedad()}" class="btn btn-lg btn-success" />
+                    </h:form>
+                </div>
+            </div>
         </div>
+
         <div class="container mt-4">
             <div class="row">
                 <div class="col">
@@ -43,34 +56,33 @@
                             <div class="card-tools">
                             </div>
                         </div>
-                        <div class="card-body">
-                            <h:form>
-                                <h3 class="card-title">NUEVA NOVEDAD</h3>
-                                <div>
-                                    Usuario seleccionado: #{usuarioLog.names} #{usuarioLog.last_names}
-                                </div>
-                                <div class="row mt-3">
-                                    <div class="col-12">
-                                        <div class="form-group">
-                                            <label for="novelty">Detalle la novedad: </label>
-                                            <h:inputTextarea id="novelty" value="#{novedad.novelty}" class="form-control" rows="3"/>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row mt-3 justify-content-end">
-                                    <div class="col-5 pr-1">
-                                            <h:commandButton value="CANCELAR" action="index2.xhtml" class="btn btn-danger btn-block" />
-                                    </div>
-                                    <div class="col-5 pl-1">
-                                            <h:commandButton value="GUARDAR"  action="#{noveltyBean.guardar(novedad)}" class="btn btn-success btn-block" />
-                                    </div>
-                                </div>
-                            </h:form>
+                        <div class="card-body table-responsive pl-2 pr-2">
+                          <h:dataTable id="binnacleTable" value="#{noveltyBean.listarNovedades()}" var="novedad" class="table table-hover text-nowrap">
+                                <h:column colspan="2">
+                                    <f:facet name="header">
+                                        <h:outputText value="NOVEDADES" />
+                                    </f:facet>
+                                    <h:outputText value="#{novedad.novelty}" />
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="FECHA/HORA" />
+                                    </f:facet>
+                                    <h:outputText value="#{novedad.hour}" />
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="GUARDIA TURNO" />
+                                    </f:facet>
+                                    <h:outputText value="#{novedad.guard}" />
+                                </h:column>
+                            </h:dataTable>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
     </h:body>
 </f:view>
 </html>

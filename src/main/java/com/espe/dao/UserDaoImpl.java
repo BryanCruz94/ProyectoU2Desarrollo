@@ -3,9 +3,13 @@ package com.espe.dao;
 import com.espe.model.JPAUtil;
 import com.espe.model.User;
 import com.espe.idao.IUserDao;
+import com.espe.model.pending_tasks.view_pedding_task;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.NoResultException;
 import jakarta.persistence.Query;
+import jakarta.persistence.TypedQuery;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class UserDaoImpl implements  IUserDao{
@@ -52,17 +56,14 @@ public class UserDaoImpl implements  IUserDao{
     }
 
     @Override
-    public User login(User usuario) {
-        User user = new User();
-        String query = "SELECT u FROM User u WHERE u.email = :email AND u.password = :password";
+    public User buscarPorEmail(String email) {
         try {
-            user = (User) entityManager.createQuery(query)
-                    .setParameter("email", usuario.getEmail())
-                    .setParameter("password", usuario.getPassword())
-                    .getSingleResult();
-        } catch (Exception e) {
-            e.printStackTrace();
+            Query query = entityManager.createNativeQuery(
+                    "SELECT * FROM users WHERE email = :email", User.class);
+            query.setParameter("email", email);
+            return (User) query.getSingleResult();
+        } catch (NoResultException e) {
+            return null;
         }
-        return user;
     }
 }

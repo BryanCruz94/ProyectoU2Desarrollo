@@ -14,5 +14,5 @@ public interface IUserDao {
 
     void eliminar(int id);
 
-    User login(User usuario);
+    User buscarPorEmail(String email);
 }

@@ -44,7 +44,7 @@ public class NoveltiesManagerBean {
 
         noveltyDao.guardar(novelty);
 
-        return "/index.xhtml";
+        return "/index2.xhtml";
     }
 
 }
