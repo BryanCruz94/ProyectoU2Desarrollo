@@ -50,4 +50,19 @@ public class UserDaoImpl implements  IUserDao{
         entityManager.remove(oUsuario);
         entityManager.getTransaction().commit();
     }
+
+    @Override
+    public User login(User usuario) {
+        User user = new User();
+        String query = "SELECT u FROM User u WHERE u.email = :email AND u.password = :password";
+        try {
+            user = (User) entityManager.createQuery(query)
+                    .setParameter("email", usuario.getEmail())
+                    .setParameter("password", usuario.getPassword())
+                    .getSingleResult();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return user;
+    }
 }

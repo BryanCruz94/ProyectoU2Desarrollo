@@ -45,12 +45,40 @@
                         </div>
                         <div class="card-body">
                             <h:form>
-                                <h5 class="card-title">NUEVA NOVEDAD</h5>
+                                <h3 class="card-title">NUEVA NOVEDAD</h3>
+                                <h5 class="card-title">SELECCIONE USUARIO RESPONSABLE</h5>
+                                <div class="card-body table-responsive pl-2 pr-2">
+                                    <h:dataTable value="#{usuarioBean.obtenerUsuarios()}" var="user" class="table table-hover text-nowrap">
+                                        <h:column>
+                                            <f:facet name="header">
+                                                NOMBRE Y APELLIDO
+                                            </f:facet>
+                                            <h:outputText value="#{user.names} #{user.last_names}" />
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">
+                                                CORREO ELECTRÓNICO
+                                            </f:facet>
+                                            <h:outputText value="#{user.email}" />
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">
+                                                ACCIÓN
+                                            </f:facet>
+                                            <h:commandButton value="SELECCIONAR" action="#{usuarioBean.seleccionarUsuario2(user)}" class="btn btn-secondary btn-sm">
+                                                <span class="fas fa-user-edit"></span>
+                                            </h:commandButton>
+                                        </h:column>
+                                    </h:dataTable>
+                                </div>
+                                <div>
+                                    Usuario seleccionado: #{usuarioLog.names} #{usuarioLog.last_names}
+                                </div>
                                 <div class="row mt-3">
                                     <div class="col-12">
                                         <div class="form-group">
                                             <label for="novelty">Detalle la novedad: </label>
-                                            <textarea name="novelty" id="novelty" class="form-control" rows="3"></textarea>
+                                            <h:inputTextarea id="novelty" value="#{novedad.novelty}" class="form-control" rows="3"/>
                                         </div>
                                     </div>
                                 </div>
@@ -59,7 +87,7 @@
                                             <h:commandButton value="CANCELAR" action="index.xhtml" class="btn btn-danger btn-block" />
                                     </div>
                                     <div class="col-5 pl-1">
-                                            <h:commandButton value="GUARDAR"  class="btn btn-success btn-block" />
+                                            <h:commandButton value="GUARDAR"  action="#{noveltyBean.guardar(novedad)}" class="btn btn-success btn-block" />
                                     </div>
                                 </div>
                             </h:form>

@@ -5,10 +5,13 @@ import com.espe.model.pending_tasks.view_task_done;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.faces.context.FacesContext;
 import jakarta.inject.Named;
-import com.espe.dao.pending_task.PendingDaoImpl;
+import com.espe.dao.PendingDaoImpl;
 import com.espe.model.pending_tasks.Pendind_task;
 import com.espe.model.pending_tasks.view_pedding_task;
-import com.espe.idao.pending_task.IPendingDao;
+import com.espe.idao.INoveltyDao;
+import com.espe.dao.NoveltiesDaoImpl;
+import com.espe.model.novelties.Novelties;
+import com.espe.idao.IPendingDao;
 
 import java.util.List;
 import java.util.Map;
@@ -31,7 +34,7 @@ public class PendingManagerBean {
 
     public String guardar(Pendind_task pendind_task) {
         pendind_task.setHour_create(java.time.LocalDateTime.now());
-        pendind_task.setUserCreate((User) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario"));
+        pendind_task.setUserCreate((User) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuarioLog"));
         pendingDao.guardar(pendind_task);
 
         return "/pendings.xhtml";
@@ -52,9 +55,21 @@ public class PendingManagerBean {
     public String actualizar(Pendind_task pendind_task) {
         pendind_task.setTask_done(true);
         pendind_task.setHour_done(java.time.LocalDateTime.now());
-        pendind_task.setUserDone((User) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario"));
+        pendind_task.setUserDone((User) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuarioLog"));
 
         pendingDao.editar(pendind_task);
+
+
+        //SE CREA UNA NUEVA NOVEDAD
+        Novelties novedad = new Novelties();
+        INoveltyDao noveltyDao = new NoveltiesDaoImpl();
+
+        novedad.setHour(java.time.LocalDateTime.now());
+        novedad.setGuard_id((User) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuarioLog"));
+        novedad.setNovelty("Se ha completado la consigna: " + pendind_task.getPending_task() + " con las siguientes observaciones: " + pendind_task.getObservations());
+
+        noveltyDao.guardar(novedad);
+
         return "/pendings.xhtml";
     }
 

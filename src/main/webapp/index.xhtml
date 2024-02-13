@@ -38,7 +38,7 @@
             <div class="row mt-1">
                 <div class="col-10 offset-1 d-flex align-items-center justify-content-center">
                     <h:form enctype="multipart/form-data">
-                        <h:commandButton value="REGISTRAR NOVEDAD" action="agregarnovedad.xhtml" class="btn btn-lg btn-success" />
+                        <h:commandButton value="REGISTRAR NOVEDAD" action="#{noveltyBean.nuevaNovedad()}" class="btn btn-lg btn-success" />
                     </h:form>
                 </div>
             </div>
@@ -53,29 +53,26 @@
                             </div>
                         </div>
                         <div class="card-body table-responsive pl-2 pr-2">
-                            <table id="binnacleTable"  class="table table-hover text-nowrap">
-                                <thead>
-                                <tr>
-                                    <th class="text-center align-middle">ORD</th>
-                                    <th class="text-center align-middle" colspan="2">NOVEDADES</th>
-                                    <th class="text-center align-middle">FECHA/HORA</th>
-                                    <th class="text-center align-middle text-wrap">GUARDIA TURNO</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <td class="align-middle"></td>
-                                    <td class="text-wrap" style="min-width: 100px; max-width: 300px;"></td>
-                                    <td class="align-middle" style="min-width: 10px; max-width: 30px;">
-                                        <div class="btnCopiar">
-                                            <i class="fa-solid fa-copy fa-lg"  style="color: #3b9834;"></i>
-                                        </div>
-                                    </td>
-                                    <td class="align-middle text-wrap"></td>
-                                    <td class="align-middle text-wrap" style="min-width: 50px; max-width: 300px;"></td>
-                                </tr>
-                                </tbody>
-                            </table>
+                          <h:dataTable id="binnacleTable" value="#{noveltyBean.listarNovedades()}" var="novedad" class="table table-hover text-nowrap">
+                                <h:column colspan="2">
+                                    <f:facet name="header">
+                                        <h:outputText value="NOVEDADES" />
+                                    </f:facet>
+                                    <h:outputText value="#{novedad.novelty}" />
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="FECHA/HORA" />
+                                    </f:facet>
+                                    <h:outputText value="#{novedad.hour}" />
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="GUARDIA TURNO" />
+                                    </f:facet>
+                                    <h:outputText value="#{novedad.guard}" />
+                                </h:column>
+                            </h:dataTable>
                         </div>
                     </div>
                 </div>

@@ -1,9 +1,9 @@
-package com.espe.dao.pending_task;
+package com.espe.dao;
 
 import com.espe.model.JPAUtil;
 import com.espe.model.pending_tasks.Pendind_task;
 import com.espe.model.pending_tasks.view_pedding_task;
-import com.espe.idao.pending_task.IPendingDao;
+import com.espe.idao.IPendingDao;
 import com.espe.model.pending_tasks.view_task_done;
 import jakarta.persistence.EntityManager;
 import java.sql.Timestamp;

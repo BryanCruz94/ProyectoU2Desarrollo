@@ -13,4 +13,6 @@ public interface IUserDao {
     List<User> obtenerUsuarios();
 
     void eliminar(int id);
+
+    User login(User usuario);
 }

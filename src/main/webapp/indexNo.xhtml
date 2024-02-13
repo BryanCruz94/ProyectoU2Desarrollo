@@ -29,19 +29,12 @@
             <div class="row justify-content-center">
                 <div class="col-md-6">
                     <div class="card shadow">
-                        <h5 class="card-header bg-success text-white text-center">Inicio de sesión</h5>
+                        <h4 class="card-header bg-success text-white text-center">BIENVENIDO AL SISTEMA DE BITÁCORA DE ESPE</h4>
+                        <h5 class="card-header bg-success text-white text-center">ACCEDA AL SIGUIENTE ENLACE PARA CONTINUAR</h5>
                         <div class="card-body">
-                            <h:form enctype="multipart/form-data" >
-                                <div class="mb-3">
-                                    <label for="username" class="form-label">Nombre de usuario:</label>
-                                    <input type="text" id="username" class="form-control" placeholder="Usuario" value="#{usuarioBean.email}" />
-                                </div>
-                                <div class="mb-3">
-                                    <label for="password" class="form-label">Contraseña:</label>
-                                    <input type="password" id="password" class="form-control" placeholder="Contraseña" value="#{usuarioBean.password}"/>
-                                </div>
+                            <h:form enctype="multipart/form-data">
                                 <div class="d-grid gap-2">
-                                    <h:commandButton value="Iniciar sesión" action="#{usuarioBean.login}" styleClass="btn btn-primary"/>
+                                    <h:commandButton value="Iniciar sesión" action="#{usuarioBean.mostrarLogin()}" styleClass="btn btn-primary"/>
                                 </div>
                             </h:form>
                         </div>
