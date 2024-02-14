@@ -46,46 +46,45 @@
                         <div class="card-body">
                             <h:form enctype="multipart/form-data">
                                 <div class="row mt-3">
-                                    <div class="col-4">
+                                    <div class="col-md-4">
                                         <div class="form-group">
-                                            <h:outputText class="fw-bold" value="Placa:"/>
-                                            <input type="text" name="plate" id="plate" class="form-control"
-                                                   placeholder="AAA-0000" />
+                                            <label for="plate" class="form-label">Placa:</label>
+                                            <h:inputText id="plate" value="#{vehiculo.plate}" class="form-control" placeholder="AAA-0000" />
                                         </div>
                                     </div>
-                                    <div class="col-4">
+                                    <div class="col-md-4">
                                         <div class="form-group">
-                                            <label for="description">Descripción: </label>
-                                            <input type="text" name="description" id="description" class="form-control"
-                                                   placeholder="Camioneta D-Max Blanca" />
+                                            <label for="description" class="form-label">DESCRIPCIÓN:</label>
+                                            <h:inputText id="description" value="#{vehiculo.description}" class="form-control" placeholder="CAMIONETA DMAX 2020" />
                                         </div>
                                     </div>
-                                    <div class="col-4">
+                                    <div class="col-md-4">
                                         <div class="form-group">
-                                            <label for="in_university">Dentro de la Universidad: </label>
+                                            <label for="in_university" class="form-label">Dentro de la Universidad:</label>
                                             <div class="form-check form-switch">
-                                                <input type="checkbox" class="form-check-input" id="in_university" name="in_university"/>
-                                                <label class="form-check-label" for="in_university"></label>
+                                                <h:selectOneMenu id="in_university" value="#{vehiculo.in_university}" class="form-select">
+                                                    <f:selectItem itemValue="true" itemLabel="Sí"/>
+                                                    <f:selectItem itemValue="false" itemLabel="No"/>
+                                                </h:selectOneMenu>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-12">
-                                        <div class="form-group">
-                                            <label for="img">Fotografía:</label>
-                                            <input type="file" name="img" id="img" class="form-control" rows="3" />
-                                        </div>
-                                    </div>
                                 </div>
-                                <div class="row mt-3 justify-content-end">
-                                    <div class="col-5 pr-1">
-                                        <h:commandButton value="CANCELAR" action="adminVehicles.xhtml" class="btn btn-danger btn-block" />
+                                <div class="row mt-3 justify-content-center">
+                                    <div class="col-md-4">
+                                        <h:commandButton value="CANCELAR" action="adminVehicles.xhtml" type="submit" styleClass="btn btn-danger btn-block">
+                                            <span class="fas fa-user-times"></span> Cancelar
+                                        </h:commandButton>
                                     </div>
-                                    <div class="col-5 pl-1">
-                                        <h:commandButton value="GUARDAR"  class="btn btn-success btn-block" />
+                                    <div class="col-md-4">
+                                        <h:commandButton value="GUARDAR" action="#{vehiculoBean.guardarVei(vehiculo)}" id="btnIngreso" type="submit" styleClass="btn btn-success btn-block">
+                                            <span class="fas fa-save"></span> Guardar
+                                        </h:commandButton>
                                     </div>
                                 </div>
                             </h:form>
                         </div>
+
                     </div>
                 </div>
             </div>

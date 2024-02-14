@@ -37,7 +37,7 @@
             <div class="row mt-1">
                 <div class="col-10 offset-1 d-flex align-items-center justify-content-center">
                     <h:form>
-                        <h:commandButton value="REGISTRAR NUEVO VEHÍCULO" action="agregaradminvehicle.xhtml" styleClass="btn btn-lg btn-success" />
+                        <h:commandButton value="REGISTRAR NUEVO VEHÍCULO" action="#{vehiculoBean.nuevoVei()}" styleClass="btn btn-lg btn-success" />
                     </h:form>
                 </div>
             </div>
@@ -54,47 +54,56 @@
                             </div>
                         </div>
                         <div class="card-body table-responsive pl-2 pr-2">
-                            <table id="binnacleTable"  class="table table-hover text-nowrap">
-                                <thead>
-                                <tr>
-                                    <th class="text-center align-middle">ORD</th>
-                                    <th class="text-center align-middle">PLACA</th>
-                                    <th class="text-center align-middle">DESCRIPCIÓN</th>
-                                    <th class="text-center align-middle">LUGAR</th>
-                                    <th class="text-center align-middle">FOTOGRAFÍA</th>
-                                    <th class="text-center align-middle">ACTUALIZAR</th>
-                                    <th class="text-center align-middle">ELIMINAR</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <td class="text-center">
-                                    </td>
-                                    <td class="text-center">
-                                    </td>
-                                    <td class="text-center">
-                                    </td>
-                                    <td class="text-center">
-                                    </td>
-                                    <td class="text-center">
-                                    </td>
-                                    <td class="text-center">
-                                        <h:form>
-                                            <h:commandButton value="EDITAR" action="editadminvehicle.xhtml" type="submit" class="btn btn-secondary btn-sm">
-                                                <span class="fas fa-user-edit"></span>
-                                            </h:commandButton>
-                                        </h:form>
-                                    </td>
-                                    <td class="text-center">
-                                        <h:form>
-                                            <h:commandButton value="ELIMINAR" action="deleteadminvehicle.xhtml" type="submit" class="btn btn-danger btn-sm">
-                                                <span class="fas fa-user-times"></span>
-                                            </h:commandButton>
-                                        </h:form>
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
+                            <h:dataTable value="#{vehiculoBean.obtenerVehiculo()}" var="vehiculo" class="table table-hover text-nowrap">
+
+                                <h:column >
+                                    <f:facet name="header">
+                                        PLACA
+                                    </f:facet>
+                                    <h:outputText value="#{vehiculo.plate}" />
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        DESCRIPCIÓN
+                                    </f:facet>
+                                    <h:outputText value="#{vehiculo.description}" />
+                                </h:column>
+                                <h:column class="text-center align-middle">
+                                    <f:facet name="header">
+                                        ENTRADA/SALIDA DEL VEHICULO
+                                    </f:facet>
+                                    <h:outputText value="#{vehiculo.in_university}" />
+                                </h:column>
+                                <!--<h:column>
+                                    <f:facet name="header">
+                                        IMG REFERENCIAL
+                                    </f:facet>
+                                    <h:outputText value="#{vehiculo.img_url}" />
+                                </h:column>-->
+
+
+                                <h:column>
+                                    <f:facet name="header">
+                                        EDITAR
+                                    </f:facet>
+                                    <h:form>
+                                        <h:commandButton value="EDITAR" action="#{vehiculoBean.editarVei(vehiculo.id)}" type="submit" class="btn btn-secondary btn-sm">
+                                            <span class="fas fa-user-edit"></span>
+                                        </h:commandButton>
+                                    </h:form>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        ELIMINAR
+                                    </f:facet>
+                                    <h:form>
+                                        <h:commandButton value="ELIMINAR" action="#{vehiculoBean.eliminarVei(vehiculo.id)}" type="submit" class="btn btn-danger btn-sm">
+                                            <span class="fas fa-user-times"></span>
+                                        </h:commandButton>
+                                    </h:form>
+                                </h:column>
+
+                            </h:dataTable>
                         </div>
                     </div>
                 </div>
