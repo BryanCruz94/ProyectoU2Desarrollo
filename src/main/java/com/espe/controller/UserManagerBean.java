@@ -1,5 +1,8 @@
 package com.espe.controller;
 
+import com.espe.dao.VehiculoDaoImpl;
+import com.espe.idao.IVehiculoDao;
+import com.espe.model.Vehiculo;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
@@ -50,26 +53,13 @@ public class UserManagerBean {
         //CREAR UNA COLECCIÓN DE TIPO MAP
         Map<String, Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
         sessionMap.put("usuario", oUsuario);
-
-        if(isLogged()){
-            // Si existe, redirigir a agregaradminuser.xhtml
-            return "/agregaradminuser.xhtml";
-        } else {
-            // Si no existe, redirigir a login.xhtml
-            return "/login.xhtml";
-        }
+        return "/agregaradminuser.xhtml";
     }
 
     //PARA GUARDAR UN USUARIO
     public String guardar(User usuario){
         usuarioDao.guardar(usuario);
-        if(isLogged()){
-            // Si existe, redirigir a agregaradminuser.xhtml
-            return "/adminUsers.xhtml";
-        } else {
-            // Si no existe, redirigir a login.xhtml
-            return "/login.xhtml";
-        }
+        return "/adminUsers.xhtml";
     }
 
 
@@ -83,28 +73,14 @@ public class UserManagerBean {
         //Se pasan los parámetros del usuario
         sessionMap.put("usuario", oUsuario);
 
-        if(isLogged()){
-            // Si existe, redirigir a agregaradminuser.xhtml
-            return "/editadminuser.xhtml";
-        } else {
-            // Si no existe, redirigir a login.xhtml
-            return "/login.xhtml";
-        }
-
+        return "/editadminuser.xhtml";
     }
 
 
     //PARA REALIZAR EL UPDATE AL USARIO
     public String actualizar(User usuario){
         usuarioDao.editar(usuario);
-
-        if(isLogged()){
-            // Si existe, redirigir a agregaradminuser.xhtml
-            return "/adminUsers.xhtml";
-        } else {
-            // Si no existe, redirigir a login.xhtml
-            return "/login.xhtml";
-        }
+        return "/adminUsers.xhtml";
     }
 
     //PARA ELIMINAR UN USUARIO
@@ -148,9 +124,5 @@ public class UserManagerBean {
         }
     }
 
-    public Boolean isLogged() {
-        Map<String, Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
-        return sessionMap.containsKey("usuarioLog");
-    }
 
 }

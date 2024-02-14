@@ -41,7 +41,7 @@
             <div class="row mt-1">
                 <div class="col-10 offset-1 d-flex align-items-center justify-content-center">
                     <h:form>
-                        <h:commandButton value="REGISTRAR NUEVA PERSONA" action="agregaradmindrivers.xhtml" styleClass="btn btn-lg btn-success" />
+                        <h:commandButton value="REGISTRAR NUEVA PERSONA" action="#{driverBean.nuevoDri()}" styleClass="btn btn-lg btn-success" />
                     </h:form>
                 </div>
             </div>
@@ -62,13 +62,11 @@
                                 <thead>
                                 <tr>
                                     <th class="text-center align-middle">#</th>
-                                    <th class="text-center align-middle">RANGO</th>
                                     <th class="text-center align-middle">IDENTIFICACIÓN</th>
                                     <th class="text-center align-middle">NOMBRE</th>
                                     <th class="text-center align-middle">TELÉFONO</th>
                                     <th class="text-center align-middle">TIPO DE SANGRE</th>
-                                    <th class="text-center align-middle">LICENCIA</th>                                    <th class="text-center align-middle">TELÉFONO</th>
-                                    <th class="text-center align-middle">IMAGEN</th>
+                                    <th class="text-center align-middle">TIPO DE LICENCIA</th>                                    <th class="text-center align-middle">TELÉFONO</th>
                                     <th class="text-center align-middle">ACTUALIZAR</th>
                                     <th class="text-center align-middle">ELIMINAR</th>
                                 </tr>
