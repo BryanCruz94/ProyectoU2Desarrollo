@@ -28,7 +28,15 @@ public class NoveltiesManagerBean {
         Map<String, Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
         sessionMap.put("novedad", novelty);
 
-        return "/agregarnovedad.xhtml";
+        if(isLogged()){
+            // Si existe, redirigir a agregaradminuser.xhtml
+            return "/agregarnovedad.xhtml";
+        } else {
+            // Si no existe, redirigir a login.xhtml
+            return "/login.xhtml";
+        }
+
+
     }
 
 
@@ -44,7 +52,20 @@ public class NoveltiesManagerBean {
 
         noveltyDao.guardar(novelty);
 
-        return "/index2.xhtml";
+
+        if(isLogged()){
+            // Si existe, redirigir a agregaradminuser.xhtml
+            return "/index2.xhtml";
+        } else {
+            // Si no existe, redirigir a login.xhtml
+            return "/login.xhtml";
+        }
+
+    }
+
+    public Boolean isLogged() {
+        Map<String, Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
+        return sessionMap.containsKey("usuarioLog");
     }
 
 }

@@ -50,13 +50,26 @@ public class UserManagerBean {
         //CREAR UNA COLECCIÓN DE TIPO MAP
         Map<String, Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
         sessionMap.put("usuario", oUsuario);
-        return "/agregaradminuser.xhtml";
+
+        if(isLogged()){
+            // Si existe, redirigir a agregaradminuser.xhtml
+            return "/agregaradminuser.xhtml";
+        } else {
+            // Si no existe, redirigir a login.xhtml
+            return "/login.xhtml";
+        }
     }
 
     //PARA GUARDAR UN USUARIO
     public String guardar(User usuario){
         usuarioDao.guardar(usuario);
-        return "/adminUsers.xhtml";
+        if(isLogged()){
+            // Si existe, redirigir a agregaradminuser.xhtml
+            return "/adminUsers.xhtml";
+        } else {
+            // Si no existe, redirigir a login.xhtml
+            return "/login.xhtml";
+        }
     }
 
 
@@ -70,14 +83,28 @@ public class UserManagerBean {
         //Se pasan los parámetros del usuario
         sessionMap.put("usuario", oUsuario);
 
-        return "/editadminuser.xhtml";
+        if(isLogged()){
+            // Si existe, redirigir a agregaradminuser.xhtml
+            return "/editadminuser.xhtml";
+        } else {
+            // Si no existe, redirigir a login.xhtml
+            return "/login.xhtml";
+        }
+
     }
 
 
     //PARA REALIZAR EL UPDATE AL USARIO
     public String actualizar(User usuario){
         usuarioDao.editar(usuario);
-        return "/adminUsers.xhtml";
+
+        if(isLogged()){
+            // Si existe, redirigir a agregaradminuser.xhtml
+            return "/adminUsers.xhtml";
+        } else {
+            // Si no existe, redirigir a login.xhtml
+            return "/login.xhtml";
+        }
     }
 
     //PARA ELIMINAR UN USUARIO
@@ -119,6 +146,11 @@ public class UserManagerBean {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Nombre de usuario o contraseña incorrectos."));
             return "login.xhtml";
         }
+    }
+
+    public Boolean isLogged() {
+        Map<String, Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
+        return sessionMap.containsKey("usuarioLog");
     }
 
 }
