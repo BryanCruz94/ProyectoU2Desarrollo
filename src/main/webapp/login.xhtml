@@ -31,15 +31,19 @@
                     <div class="card shadow">
                         <h5 class="card-header bg-success text-white text-center">Inicio de sesión</h5>
                         <div class="card-body">
-                            <h:form  >
-
-                               <div class="mb-3">
+                            <h:form id="formLogin">
+                                <div class="text-center">
+                                    <h:graphicImage library="imagenes" name="iconouser.png" style="max-width: 140px; max-height: 140px; margin: 20px auto;" class="img-fluid"/>
+                                </div>
+                                <div class="mb-3">
                                     <label for="email" class="form-label">Correo electrónico:</label>
-                                    <h:inputText  type="text" id="email" class="form-control" value="#{usuarioBean.email}" />
+                                    <h:inputText id="email" class="form-control" value="#{usuarioBean.email}" />
                                 </div>
                                 <div class="mb-3">
                                     <label for="password" class="form-label">Contraseña:</label>
-                                    <h:inputSecret type="password" id="password" class="form-control" value="#{usuarioBean.password}"/>
+                                    <h:inputSecret id="password" class="form-control" value="#{usuarioBean.password}"/>
+                                    <!-- Mensaje de error -->
+                                    <h:message for="password" style="color: red" />
                                 </div>
                                 <div class="d-grid gap-2">
                                     <h:commandButton value="Iniciar sesión" action="#{usuarioBean.login}" styleClass="btn btn-primary"/>

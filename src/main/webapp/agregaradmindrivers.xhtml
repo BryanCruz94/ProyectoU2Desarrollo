@@ -18,16 +18,20 @@
                     <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-                    <div class="collapse navbar-collapse justify-content-center px-3" id="navbarCollapse">
-                        <div class="navbar-nav py-lg-2">
-                            <a href="index2.xhtml" class="nav-item nav-link">NOVEDADES</a>
-                            <a href="pendings.xhtml" class="nav-item nav-link">CONSIGNAS</a>
-                            <a href="admin.xhtml" class="nav-item nav-link">ADMINISTRADOR</a>
+                    <div class="collapse navbar-collapse justify-content-start px-3" id="navbarCollapse">
+                        <div class="navbar-nav py-lg-2 text-white">
+                            <a href="index2.xhtml" class="nav-item nav-link text-white fw-bold">NOVEDADES</a>
+                            <a href="pendings.xhtml" class="nav-item nav-link text-white fw-bold">CONSIGNAS</a>
+                            <a href="admin.xhtml" class="nav-item nav-link text-white fw-bold">ADMINISTRADOR</a>
                         </div>
+                    </div>
+                    <div class="navbar-nav py-lg-2 text-white">
+                        #{usuarioLog.names} #{usuarioLog.last_names}
                     </div>
                 </nav>
             </div>
         </div>
+
         <div class="container">
             <div class="row justify-content-center align-items-center">
                 <div class="col text-center">

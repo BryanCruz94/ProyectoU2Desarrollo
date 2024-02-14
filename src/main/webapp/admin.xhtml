@@ -20,16 +20,20 @@
                     <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-                    <div class="collapse navbar-collapse justify-content-center px-3" id="navbarCollapse">
-                        <div class="navbar-nav py-lg-2">
-                            <a href="index2.xhtml" class="nav-item nav-link">NOVEDADES</a>
-                            <a href="pendings.xhtml" class="nav-item nav-link">CONSIGNAS</a>
-                            <a href="admin.xhtml" class="nav-item nav-link">ADMINISTRADOR</a>
+                    <div class="collapse navbar-collapse justify-content-start px-3" id="navbarCollapse">
+                        <div class="navbar-nav py-lg-2 text-white">
+                            <a href="index2.xhtml" class="nav-item nav-link text-white fw-bold">NOVEDADES</a>
+                            <a href="pendings.xhtml" class="nav-item nav-link text-white fw-bold">CONSIGNAS</a>
+                            <a href="admin.xhtml" class="nav-item nav-link text-white fw-bold">ADMINISTRADOR</a>
                         </div>
+                    </div>
+                    <div class="navbar-nav py-lg-2 text-white">
+                        #{usuarioLog.names} #{usuarioLog.last_names}
                     </div>
                 </nav>
             </div>
         </div>
+
         <div class="container">
             <div class="row justify-content-center align-items-center">
                 <div class="col text-center">
@@ -40,39 +44,48 @@
 
         <div class="container mt-4">
             <div class="row justify-content-center">
-                <div class="col-md-6 mb-3">
+                <div class="col-md-4 mb-3">
                     <div class="card">
                         <div class="card-header">
                             <div class="card-tools">
                             </div>
                         </div>
                         <div class="card-body">
+                            <div class="text-center">
+                                <h:graphicImage library="imagenes" name="adminVehicle.jpg" style="width:200px; margin: 20px auto;" class="img-fluid w-100"/>
+                            </div>
                             <a href="adminVehicles.xhtml" class="btn btn-danger btn-lg d-flex flex-column align-items-center" style="width: 100%;">
                                 Administración Vehicular
                             </a>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 mb-3">
+                <div class="col-md-4 mb-3">
                     <div class="card">
                         <div class="card-header">
                             <div class="card-tools">
                             </div>
                         </div>
                         <div class="card-body">
+                            <div class="text-center">
+                                <h:graphicImage library="imagenes" name="adminDrivers.jpg" style="width:200px; margin: 20px auto;" class="img-fluid w-100"/>
+                            </div>
                             <a href="adminDrivers.xhtml" class="btn btn-secondary btn-lg d-flex flex-column align-items-center" style="width: 100%;">
                                 Administración Conductores
                             </a>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 mb-3">
+                <div class="col-md-4 mb-3">
                     <div class="card">
                         <div class="card-header">
                             <div class="card-tools">
                             </div>
                         </div>
                         <div class="card-body">
+                            <div class="text-center">
+                                <h:graphicImage library="imagenes" name="adminUsers.png" style="width:200px; margin: 20px auto;" class="img-fluid w-100"/>
+                            </div>
                             <a href="adminUsers.xhtml" class="btn btn-success btn-lg d-flex flex-column align-items-center" style="width: 100%;">
                                 Administración Usuarios
                             </a>

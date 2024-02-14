@@ -143,7 +143,7 @@ public class UserManagerBean {
             sessionMap.put("usuarioLog", usuarioEnBaseDeDatos);
             return "index2.xhtml?faces-redirect=true";
         } else {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Nombre de usuario o contraseña incorrectos."));
+            FacesContext.getCurrentInstance().addMessage("formLogin:password", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Nombre de usuario o contraseña incorrectos."));
             return "login.xhtml";
         }
     }
